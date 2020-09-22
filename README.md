@@ -4,8 +4,8 @@
 # Installation
 ## Vim Plug
 ```vim
-Plugin 'dracula/vim'
-:PluginInstall
+Plug 'dracula/vim'
+:PlugInstall
 ```
 
 ## Vundle
