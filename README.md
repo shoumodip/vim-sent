@@ -66,7 +66,7 @@ This will automatically stop working when you reach the boundaries (beginning/en
 `<Shift-Tab>` Cycles through the list headers in reverse order in *Normal Mode*.\
 This will change the list item headers of all list items in the Slide/paragraph and will only work if the current paragraph has a valid list.
 
-![Cycle List Headers](img/toggle_headers.gif)
+![Cycle List Headers](img/cycle_headers.gif)
 
 ## Other Keybindings
 `cr` Create blank line after current item in *Normal Mode*\
