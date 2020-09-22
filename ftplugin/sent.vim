@@ -571,13 +571,6 @@ function! ParaMoveUp()
 endfunction
 " }}}
 
-" Abbreviations -{{{
-iabbrev . •
-iabbrev * ◉
-iabbrev -> →
-iabbrev > ▸
-" }}}
-
 " Toggle State -{{{
 function! ToggleState(string)
 
@@ -667,6 +660,13 @@ inoremap <silent> <tab> <cr>
 
 " Open Preview
 nnoremap <silent> <F5> :!sent % & disown<cr><cr>
+" }}}
+
+" Abbreviations -{{{
+iabbrev . •
+iabbrev * ◉
+iabbrev -> →
+iabbrev > ▸
 " }}}
 
 " vim:foldmethod=marker
