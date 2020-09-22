@@ -74,6 +74,13 @@ This will change the list item headers of all list items in the Slide/paragraph 
 `<C-a>` Refresh the list numbers in the current paragraph.\
 `<F5>` Open preview in sent
 
+# Abbreviations
+These abbreviations will work if the characters are used as a single word, i.e. separated by a space/line-beginning/etc on either side. For more info, see `:help abbrev`\
+`.` will write `•`\
+`*` will write `◉`\
+`->` will write `→`\
+`>` will write `▸`
+
 # User Configuration
 ## More bullets
 Put this in your vimrc/init.vim **before** you source the plugin
