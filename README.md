@@ -87,14 +87,14 @@ Put this in your vimrc/init.vim **before** you source the plugin
 ```vim
 let bulletlist = ['+']
 ```
-This will make the '+' character a valid list bullet and all the awesome syntax-highlighting, automatic-creation, moving-up-and-down features will work for a list item starting with '+'
+This will make the '+' character **also** a valid list bullet and all the awesome syntax-highlighting, automatic-creation, moving-up-and-down features will **also** work for a list item starting with '+'
 
 ## Override existing list of bullets
 Put this in your vimrc/init.vim **before** you source the plugin
 ```vim
 let newbulletlist = ['+']
 ```
-This will make the '+' character the only valid list bullet. All the awesome syntax-highlighting, automatic-creation, moving-up-and-down features will only work for a list item starting with '+'
+This will make the '+' character the **only** valid list bullet. All the awesome syntax-highlighting, automatic-creation, moving-up-and-down features will **only** work for a list item starting with '+'
 
 ## Copy Register
 By default when moving list items/slides, vim-sent uses the `q` register for clipboard management so as to keep the main clipboard untouched. However if this conflicts with a macro you have created or some other plugin, worry not. You can change it.
