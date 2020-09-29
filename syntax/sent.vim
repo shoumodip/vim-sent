@@ -17,12 +17,12 @@ syntax match sentBullet "\v^[0-9]*\)"
 " If user has defined a bullet list add the default bullets to the list else
 " create it
 if exists("bulletlist")
-	let g:bulletList = ['-', '▸', '→', '•', '◉'] + bulletlist
+	let g:bulletList = ['-', '→', '•', '*'] + bulletlist
 else
 	if exists("newbulletlist")
 		let g:bulletList = newbulletlist
 	else
-		let g:bulletList = ['-', '▸', '→', '•', '◉']
+		let g:bulletList = ['-', '→', '•', '*']
 	endif
 endif
 
@@ -36,7 +36,7 @@ let g:revBulletList = reverse(copy(g:bulletList))
 " }}}
 
 " Highlighting -{{{
-highlight link sentBullet Identifier
+highlight link sentBullet Label
 highlight link sentComment Comment
 highlight link sentPicture Constant
 highlight link sentText Identifier

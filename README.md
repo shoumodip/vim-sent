@@ -64,7 +64,7 @@ This will automatically stop working when you reach the boundaries (beginning/en
 ## Cycle List Item Headers
 `<Tab>` Cycles through the list headers in *Normal Mode*.\
 `<Shift-Tab>` Cycles through the list headers in reverse order in *Normal Mode*.\
-This will change the list item headers of all list items in the Slide/paragraph and will only work if the current paragraph has a valid list.
+This will change the list item headers of all list items in the Slide/paragraph and will only work if the current paragraph has a valid list. Also, *your* list of headers will be **different** from this gif based on your configuration (see below)
 
 ![Cycle List Headers](img/cycle_headers.gif)
 
@@ -77,12 +77,11 @@ This will change the list item headers of all list items in the Slide/paragraph 
 # Abbreviations
 These abbreviations will work if the characters are used as a single word, i.e. separated by a space/line-beginning/etc on either side. For more info, see `:help abbrev`\
 `.` will write `•`\
-`*` will write `◉`\
 `->` will write `→`\
-`>` will write `▸`
 
 # User Configuration
 ## More bullets
+BY default, the list of valid bullets include the characters `-`, `→`, `•` and `*`. However you may want to add more bullets.\
 Put this in your vimrc/init.vim **before** you source the plugin
 ```vim
 let bulletlist = ['+']
