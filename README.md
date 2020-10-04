@@ -4,13 +4,13 @@
 # Installation
 ## Vim Plug
 ```vim
-Plug 'dracula/vim'
+Plug 'shoumodip/vim-sent'
 :PlugInstall
 ```
 
 ## Vundle
 ```vim
-Plugin 'dracula/vim'
+Plugin 'shoumodip/vim-sent'
 :PluginInstall
 ```
 
