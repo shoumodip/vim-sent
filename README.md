@@ -37,7 +37,7 @@ This will automatically stop working when you reach the boundary of the list (be
 `<C-K>` Move current Slide/paragraph up in *Normal Mode*\
 `<C-J>` Move current Slide/paragraph down in *Normal Mode*\
 This will automatically stop working when you reach the boundaries (beginning/end of file) in *Normal Mode*\
-Also, if you use `K` or `J` (the *Item Moving* hotkeys) on **normal text** (any **non-list text**), it will move the paragraph as well.
+Also, if you use `K` or `J` (the *Item Moving* hotkeys) on **normal text** (any **non-list text**), it will move the slide as well.
 
 ![Move Slides](img/move_slides.gif)
 
