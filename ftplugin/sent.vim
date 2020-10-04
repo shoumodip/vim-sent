@@ -665,6 +665,8 @@ nnoremap <silent> <F5> :!sent % & disown<cr><cr>
 " Abbreviations -{{{
 iabbrev . •
 iabbrev -> →
+iabbrev > ‣
+iabbrev * ◉
 " }}}
 
 " vim:foldmethod=marker
