@@ -78,10 +78,12 @@ This will change the list item headers of all list items in the Slide/paragraph 
 These abbreviations will work if the characters are used as a single word, i.e. separated by a space/line-beginning/etc on either side. For more info, see `:help abbrev`\
 `.` will write `•`\
 `->` will write `→`\
+`>` will write `‣`\
+`*` will write `◉`
 
 # User Configuration
 ## More bullets
-BY default, the list of valid bullets include the characters `-`, `→`, `•` and `*`. However you may want to add more bullets.\
+By default, the list of valid bullets include the characters `-`, `‣`, `→`, `•` and `◉`. However you may want to add more bullets.\
 Put this in your vimrc/init.vim **before** you source the plugin
 ```vim
 let bulletlist = ['+']
