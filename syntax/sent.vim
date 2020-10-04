@@ -36,7 +36,7 @@ let g:revBulletList = reverse(copy(g:bulletList))
 " }}}
 
 " Highlighting -{{{
-highlight link sentBullet Label
+highlight link sentBullet Identifier
 highlight link sentComment Comment
 highlight link sentPicture Constant
 highlight link sentText Identifier

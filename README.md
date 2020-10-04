@@ -26,7 +26,7 @@ Plugin 'dracula/vim'
 
 ![Create Items](img/create_items.gif)
 
-## Move list items
+## Move items
 `K` Move current item up in *Normal Mode*\
 `J` Move current item down in *Normal Mode*\
 This will automatically stop working when you reach the boundary of the list (beginning/end of file/paragraph) in *Normal Mode*
@@ -36,7 +36,8 @@ This will automatically stop working when you reach the boundary of the list (be
 ## Move Slides/Paragraphs
 `<C-K>` Move current Slide/paragraph up in *Normal Mode*\
 `<C-J>` Move current Slide/paragraph down in *Normal Mode*\
-This will automatically stop working when you reach the boundaries (beginning/end of file) in *Normal Mode*
+This will automatically stop working when you reach the boundaries (beginning/end of file) in *Normal Mode*\
+Also, if you use `K` or `J` (the *Item Moving* hotkeys) on **normal text** (any **non-list text**), it will move the paragraph as well.
 
 ![Move Slides](img/move_slides.gif)
 
