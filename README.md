@@ -3,12 +3,12 @@
 
 # Installation
 ## Vim
-```bash
+```sh
 git clone https://github.com/shoumodip/vim-sent ~/.vim/pack/plugins/start/vim-sent
 ```
 
 ## Neovim
-```bash
+```sh
 git clone https://github.com/shoumodip/vim-sent ~/.config/nvim/pack/plugins/start/vim-sent
 ```
 
