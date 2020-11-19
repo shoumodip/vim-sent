@@ -2,17 +2,17 @@
 [Sent](https://tools.suckless.org/sent) is a Suckless tools used to create very quick presentations in plain text format. This plugin makes it even easier, with lots of key combinations to manipulate lists, slides, images and comments.
 
 # Installation
-## Vim Plug
-```vim
-Plug 'shoumodip/vim-sent'
-:PlugInstall
+## Vim
+```bash
+git clone https://github.com/shoumodip/vim-sent ~/.vim/pack/plugins/start/vim-sent
 ```
 
-## Vundle
-```vim
-Plugin 'shoumodip/vim-sent'
-:PluginInstall
+## Neovim
+```bash
+git clone https://github.com/shoumodip/vim-sent ~/.config/nvim/pack/plugins/start/vim-sent
 ```
+
+Or you can use any plugin manager of your choice.
 
 # File Detection
 - You can name the file as `FILENAME.sent`\.
@@ -22,7 +22,7 @@ Plugin 'shoumodip/vim-sent'
 ## Create new list Items
 `O` Create new item above current item in *Normal Mode*\
 `o` Create new item below current item in *Normal Mode*\
-`<Return>` Create new item below current item in *Insert Mode*
+`<Tab>` Create new item below current item in *Insert Mode*
 
 ![Create Items](img/create_items.gif)
 
@@ -71,7 +71,6 @@ This will change the list item headers of all list items in the Slide/paragraph 
 
 ## Other Keybindings
 `cr` Create blank line after current item in *Normal Mode*\
-`<Tab>` Create blank line after current item in *Insert Mode*\
 `<C-a>` Refresh the list numbers in the current paragraph.\
 `<F5>` Open preview in sent
 

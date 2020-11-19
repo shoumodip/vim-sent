@@ -1,5 +1,5 @@
 " Change List Header -{{{
-function! ChangeListHead(reverse)
+function! s:ChangeListHead(reverse)
 
   " Use different lists for different directions
   if a:reverse == "false"
@@ -71,10 +71,10 @@ function! ChangeListHead(reverse)
             " and refresh the numbers
             if a:reverse == "false"
               execute "normal! 0\"_ct 1."
-              silent! call RedrawNumbers()
+              silent! call <SID>RedrawNumbers()
             else
               execute "normal! 0\"_ct 1)"
-              silent! call RedrawNumbers()
+              silent! call <SID>RedrawNumbers()
             endif
           endif
         else
@@ -91,10 +91,10 @@ function! ChangeListHead(reverse)
               " and refresh the numbers
               if a:reverse == "false"
                 execute "normal! 0\"_ct 1."
-                silent! call RedrawNumbers()
+                silent! call <SID>RedrawNumbers()
               else
                 execute "normal! 0\"_ct 1)"
-                silent! call RedrawNumbers()
+                silent! call <SID>RedrawNumbers()
               endif
             endif
           else
@@ -109,21 +109,20 @@ function! ChangeListHead(reverse)
   endif
 endfunction
 " }}}
-
 " Create Item Below -{{{
-function! CreateItemBelow()
+function! s:CreateItemBelow()
 
   " Check if the current line is a valid list item
   if getline('.') =~? '^[0-9]*\.'
 
-    " Get the current line number
+    " Get the current item number
     let currlinenum = getline('.') + 0
 
     " Create a new item
     execute "normal! o" . (currlinenum + 1) . ". "
 
     " Reload list numbers
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
 
     " Start appending
     startinsert!
@@ -132,7 +131,7 @@ function! CreateItemBelow()
   elseif getline('.') =~? '^[0-9]*)'
     let currlinenum = getline('.') + 0
     execute "normal! o" . (currlinenum + 1) . ") "
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
     startinsert!
 
   else
@@ -145,6 +144,7 @@ function! CreateItemBelow()
         break
       endif
     endfor
+
     if !(createdline)
       execute "normal! o"
     endif
@@ -152,9 +152,8 @@ function! CreateItemBelow()
   endif
 endfunction
 " }}}
-
 " Create Item Above -{{{
-function! CreateItemAbove()
+function! s:CreateItemAbove()
 
   " Check if the current line is a valid list item
   if getline('.') =~? '^[0-9]*\.'
@@ -166,7 +165,7 @@ function! CreateItemAbove()
     execute "normal! O" . (currlinenum - 1) . ". "
 
     " Reload numbers
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
 
     " Start appending
     startinsert!
@@ -175,7 +174,7 @@ function! CreateItemAbove()
   elseif getline('.') =~? '^[0-9]*)'
     let currlinenum = getline('.') + 0
     execute "normal! O" . (currlinenum - 1) . ") "
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
     startinsert!
 
   else
@@ -195,9 +194,8 @@ function! CreateItemAbove()
   endif
 endfunction
 " }}}
-
 " Redraw numbers -{{{
-function! RedrawNumbers()
+function! s:RedrawNumbers()
 
   " Save the current cursor position and go to the beginning of the paragraph
   let currlinenum = line('.')
@@ -252,9 +250,8 @@ function! RedrawNumbers()
   endif
 endfunction
 " }}}
-
 " Move Paragraph Down -{{{
-function! ParaMoveDown()
+function! s:ParaMoveDown()
 
   let paramoved = 0
 
@@ -327,9 +324,8 @@ function! ParaMoveDown()
 
 endfunction
 " }}}
-
 " Move Paragraph Up -{{{
-function! ParaMoveUp()
+function! s:ParaMoveUp()
 
   let paramoved = 0
 
@@ -392,9 +388,8 @@ function! ParaMoveUp()
   endif
 endfunction
 " }}}
-
 " Move a list item down -{{{
-function! ListMoveDown()
+function! s:ListMoveDown()
   " Get the current row and column number
   let currlinenum = line('.')
   let currcolnum = virtcol('.')
@@ -423,7 +418,7 @@ function! ListMoveDown()
     endif
 
     " Redraw the numbers to get proper item numbers
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
 
     " Same process,however instead of '.', it works with ')'
   elseif getline('.') =~? '^[0-9]*)' && currlinenum < line('$')
@@ -436,7 +431,7 @@ function! ListMoveDown()
     if currcolnum > 1
       execute "normal! " . (currcolnum - 1) . "l"
     endif
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
 
     " Normal list item movement
   elseif currlinenum < line('$')
@@ -477,9 +472,8 @@ function! ListMoveDown()
   endif
 endfunction
 " }}}
-
 " Move a list item up -{{{
-function! ListMoveUp()
+function! s:ListMoveUp()
   " Get the current row and column number
   let currcolnum = virtcol('.')
   let currlinenum = line('.')
@@ -512,7 +506,7 @@ function! ListMoveUp()
     endif
 
     " Redraw the numbers to get proper item numbers
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
 
     " Same process,however instead of '.', it works with ')'
   elseif getline('.') =~? '^[0-9]*)' && currlinenum > 1
@@ -529,7 +523,7 @@ function! ListMoveUp()
     if currcolnum > 1
       execute "normal! " . (currcolnum - 1) . "l"
     endif
-    silent! call RedrawNumbers()
+    silent! call <SID>RedrawNumbers()
 
     " Normal list item movement
   elseif currlinenum > 1
@@ -569,15 +563,14 @@ function! ListMoveUp()
   endif
 endfunction
 " }}}
-
 " Move an item down -{{{
-function! ItemMoveDown()
+function! s:ItemMoveDown()
 
   " Only move items if current line is a valid list item
   if getline('.') =~? '^[0-9]*\.'
-    silent! call ListMoveDown()
+    silent! call <SID>ListMoveDown()
   elseif getline('.') =~? '^[0-9]*)'
-    silent! call ListMoveDown()
+    silent! call <SID>ListMoveDown()
   else
     let moveditem = 0
 
@@ -591,7 +584,7 @@ function! ItemMoveDown()
 
         " The item will be moved
         let moveditem = 1
-        silent! call ListMoveDown()
+        silent! call <SID>ListMoveDown()
 
         break
       endif
@@ -599,21 +592,20 @@ function! ItemMoveDown()
 
     " Check if the line was not moved and the current line is not empty
     if !(moveditem) && getline('.') !~? '\v^\s*$'
-      silent! call ParaMoveDown()
+      silent! call <SID>ParaMoveDown()
     endif
   endif
 endfunction
 
 " }}}
-
 " Move an item up -{{{
-function! ItemMoveUp()
+function! s:ItemMoveUp()
 
   " Only move items if current line is a valid list item
   if getline('.') =~? '^[0-9]*\.'
-    silent! call ListMoveUp()
+    silent! call <SID>ListMoveUp()
   elseif getline('.') =~? '^[0-9]*)'
-    silent! call ListMoveUp()
+    silent! call <SID>ListMoveUp()
   else
     let moveditem = 0
 
@@ -627,7 +619,7 @@ function! ItemMoveUp()
 
         " The item will be moved
         let moveditem = 1
-        silent! call ListMoveUp()
+        silent! call <SID>ListMoveUp()
 
         break
       endif
@@ -635,15 +627,14 @@ function! ItemMoveUp()
 
     " Check if the line was not moved
     if !(moveditem) && getline('.') !~? '\v^\s*$'
-      silent! call ParaMoveUp()
+      silent! call <SID>ParaMoveUp()
     endif
   endif
 endfunction
 
 " }}}
-
 " Toggle State -{{{
-function! ToggleState(string)
+function! s:ToggleState(string)
 
   " The current column of the cursor
   let currcolnum = virtcol('.')
@@ -671,17 +662,16 @@ function! ToggleState(string)
   endif
 endfunction
 " }}}
-
 " Toggle List Item Headers -{{{
-function! ToggleListHeaders(reverse)
+function! s:ToggleListHeaders(reverse)
 
   " Get the original cursor position
   let origlinenum = line('.')
   let origcolnum = virtcol('.')
 
   " Change the List Headers
-  silent! execute "normal! vip:call ChangeListHead(a:reverse)\<cr>"
-  silent! call RedrawNumbers()
+  silent! execute "normal! vip:call <SID>ChangeListHead(a:reverse)\<CR>"
+  silent! call <SID>RedrawNumbers()
 
   " Move the cursor back to its original position
   execute "normal! " . origlinenum . "G0"
@@ -690,49 +680,61 @@ function! ToggleListHeaders(reverse)
   endif
 endfunction
 " }}}
+" Sent preview window -{{{
+function! s:SentPreview()
 
+  " Create the command
+  let l:sent_prev_cmd = join(getline(1, '$'), "\n") " The lines in the buffer
+  let l:sent_prev_cmd = substitute(l:sent_prev_cmd, '\\', '\\\\', 'g') " Expand the '\'
+  let l:sent_prev_cmd = substitute(l:sent_prev_cmd, "'", '''"''"''', 'g') " Expand the '
+
+  " Create the command
+  let l:sent_prev_cmd = "echo -e '" . l:sent_prev_cmd . "' | sent"
+
+  " Execute it!
+  call system(l:sent_prev_cmd)
+endfunction
+" }}}
 " Mappings -{{{
 
 " Toggle States
-nnoremap <silent> gcc :call ToggleState("# ")<cr>
-nnoremap <silent> gcap vip:call ToggleState("# ")<cr>
-vnoremap <silent> gc :call ToggleState("# ")<cr>
+nnoremap <silent> gcc :call <SID>ToggleState("# ")<CR>
+nnoremap <silent> gcap vip:call <SID>ToggleState("# ")<CR>
+vnoremap <silent> gc :call <SID>ToggleState("# ")<CR>
 
-nnoremap <silent> gdd :call ToggleState("\\")<cr>
-nnoremap <silent> gdap vip:call ToggleState("\\")<cr>
-vnoremap <silent> gd :call ToggleState("\\")<cr>
+nnoremap <silent> gdd :call <SID>ToggleState("\\")<CR>
+nnoremap <silent> gdap vip:call <SID>ToggleState("\\")<CR>
+vnoremap <silent> gd :call <SID>ToggleState("\\")<CR>
 
-nnoremap <silent> gpp :call ToggleState("@")<cr>
-nnoremap <silent> gpap vip:call ToggleState("@")<cr>
-vnoremap <silent> gp :call ToggleState("@")<cr>
+nnoremap <silent> gpp :call <SID>ToggleState("@")<CR>
+nnoremap <silent> gpap vip:call <SID>ToggleState("@")<CR>
+vnoremap <silent> gp :call <SID>ToggleState("@")<CR>
 
-nnoremap <silent> <tab> :call ToggleListHeaders("false")<cr>
-nnoremap <silent> <s-tab> :call ToggleListHeaders("true")<cr>
+nnoremap <silent> <Tab> :call <SID>ToggleListHeaders("false")<CR>
+nnoremap <silent> <S-Tab> :call <SID>ToggleListHeaders("true")<CR>
 
 " List Item Movement
-nnoremap <silent> J :call ItemMoveDown()<cr>
-nnoremap <silent> K :call ItemMoveUp()<cr>
+nnoremap <silent> J :call <SID>ItemMoveDown()<CR>
+nnoremap <silent> K :call <SID>ItemMoveUp()<CR>
 
 " Paragraph Movement
-nnoremap <silent> <C-j> :call ParaMoveDown()<cr>
-nnoremap <silent> <C-k> :call ParaMoveUp()<cr>
+nnoremap <silent> <C-j> :call <SID>ParaMoveDown()<CR>
+nnoremap <silent> <C-k> :call <SID>ParaMoveUp()<CR>
 
 " Redraw numbers
-nnoremap <silent> <C-a> :call RedrawNumbers()<cr>
+nnoremap <silent> <C-a> :call <SID>RedrawNumbers()<CR>
 
 " Create new items
-nnoremap <silent> o :call CreateItemBelow()<cr>
-nnoremap <silent> O :call CreateItemAbove()<cr>
-inoremap <silent> <return> <esc>:call CreateItemBelow()<cr>
+nnoremap <silent> o :call <SID>CreateItemBelow()<CR>
+nnoremap <silent> O :call <SID>CreateItemAbove()<CR>
+inoremap <silent> <Tab> <C-o>:call <SID>CreateItemBelow()<CR>
 
 " Create normal lines
-nnoremap <silent> cr A<cr>
-inoremap <silent> <tab> <cr>
+nnoremap <silent> cr A<CR>
 
 " Open Preview
-nnoremap <silent> <F5> :!sent % & disown<cr><cr>
+nnoremap <silent> <F5> :call <SID>SentPreview()<CR>
 " }}}
-
 " Abbreviations -{{{
 iabbrev . •
 iabbrev -> →
